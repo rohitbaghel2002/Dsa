@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    int n, j;
+
+    cin >> n;
+    for (int i = 1; i <= n; i++)
+    {
+        for (int k = 1; k <= n - i; k++)
+        {
+            cout << "  ";
+        }
+        int l = i;
+
+        for (j = 1; j <= i; j++)
+        {
+            cout << l-- << " ";
+        }
+        for (j = 2; j <= i; j++)
+        {
+            cout << j << " ";
+        }
+
+        cout << endl;
+    }
+}
