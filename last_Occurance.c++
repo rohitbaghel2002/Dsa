@@ -1,41 +1,52 @@
-#include <bits/stdc++.h>
-
-using namespace std;
-
-int solve(int n, int key, vector<int> &v)
-{
-    int start = 0;
-    int end = n - 1;
-    int res = -1;
-
-    while (start <= end)
-    {
-        int mid = start + (end - start) / 2;
-        if (v[mid] == key)
-        {
-            res = mid;
-            end = mid - 1;
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        vector<int> res;
+        int f=first(nums,target);
+        int l=last(nums,target);
+        res.push_back(f);
+        res.push_back(l);
+        return res;
+   
+    }
+    int first(vector<int>&nums,int target){
+    int mid;
+    int n=nums.size();
+    int start = 0, end = n - 1;
+    int pos=-1;
+    while(start<=end){
+        mid=(start+end)/2;
+        if(nums[mid]==target){
+            pos=mid;
+            end=mid-1;
         }
-        else if (key < v[mid])
-        {
-            end = mid - 1;
+        else if(nums[mid]>target){
+            end=mid-1;
+    
         }
-        else
-        {
-            start = mid + 1;
+        else {
+            start=mid+1;
         }
     }
-    return res;
-}
-
-int main()
-{
-    int n = 7;
-    int key = 13;
-    vector<int> v = {3, 4, 13, 13, 13, 20, 40};
-
-    // returning the last occurrence index if the element is present otherwise -1
-    cout << solve(n, key, v) << "\n";
-
-    return 0;
-}
+    return pos;
+    }
+    int last(vector<int>&nums,int target){
+    int mid;
+    int n=nums.size();
+    int start = 0, end = n - 1;
+    int pos=-1;
+    while(start<=end){
+        mid=(start+end)/2;
+        if(nums[mid]==target){
+            pos=mid;
+            start=mid+1;
+        }
+        else if(nums[mid]>target){
+            end=mid-1;
+        }
+        else {
+            start=mid+1;
+        }
+    }
+    return pos;}
+};
